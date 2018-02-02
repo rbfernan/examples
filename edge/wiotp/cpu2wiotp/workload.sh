@@ -185,7 +185,16 @@ while true; do
       # Send directly to the WIoTP cloud mqtt broker
       msgHost="$HZN_ORGANIZATION.messaging.$WIOTP_DOMAIN"
     fi
-
+    
+    # Little processing sample here...
+    #If cpu > 50.0 send it to the alert topic instead
+    cpuVal=$(echo "$json" | grep -Eo '[+-]?[0-9]+([.][0-9]+)?')
+    cpuLimit=50.0
+    var=$(awk 'BEGIN{print "'$cpuVal'"<"'$cpuLimit'"?1:0}')
+    if [ "$var" -eq 0 ];then
+      topic=$(echo $topic | sed -e "s/status/alert/g")
+    fi
+ 
     if [[ "$VERBOSE" == 1 ]]; then
       echo mosquitto_pub -h "$msgHost" -p 8883 -i "$clientId" -u "use-token-auth" -P "$WIOTP_DEVICE_AUTH_TOKEN" --cafile $WIOTP_PEM_FILE -q 2 -t "$topic" -m "$json"
     fi
