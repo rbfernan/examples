@@ -89,15 +89,5 @@ echo ""
 echo "Verifying wl definition..."
 hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" workload verify -o $HZN_ORG_ID -k $PUBLIC_KEY_FILE internetofthings.ibmcloud.com-workloads-cpu2wiotp_${CPU2WIOTP_VERSION}_${ARCH2}
 
-echo ""
-echo "Updating Pattern definition..." 
-echo ""
-envsubst < ~/examples/edge/wiotp/cpu2wiotp/horizon/pattern/insert-cpu2wiotp-template.json > ~/pi_def.json
-hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" pattern insertworkload -o $HZN_ORG_ID -k $PRIVATE_KEY_FILE -f ~/pi_def.json $WIOTP_GW_TYPE
-
-echo ""
-echo "Verifying Pattern definition..."
-hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" pattern list -o $HZN_ORG_ID $WIOTP_GW_TYPE | jq .
-
 echo "" 
 echo "Publishing Complete."
