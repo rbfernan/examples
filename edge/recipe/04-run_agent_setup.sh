@@ -2,12 +2,11 @@
 
 echo "Running agent setup ..." 
 . ~/hzn_custom_wl_demo.env
-eho ""
+echo ""
 
 echo "Updating the /etc/wiotp-edge/hznEdgeCoreIoTInput.json.template" 
 cp /etc/wiotp-edge/hznEdgeCoreIoTInput.json.template /etc/wiotp-edge/hznEdgeCoreIoTInput.json.template.orig
 envsubst <~/examples/edge/wiotp/cpu2wiotp/horizon/pattern/device/hznEdgeCoreIoTInput.json.template> /etc/wiotp-edge/hznEdgeCoreIoTInput.json.template
-
 
 echo "Configuring WIoTP Edge Node for $WIOTP_ORG_ID $WIOTP_GW_TYPE $WIOTP_GW_ID..." 
 wiotp_agent_setup --org $WIOTP_ORG_ID --deviceType $WIOTP_GW_TYPE --deviceId $WIOTP_GW_ID --deviceToken "$WIOTP_GW_TOKEN" -cn 'edge-connector'
