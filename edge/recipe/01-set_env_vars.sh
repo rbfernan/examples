@@ -6,6 +6,7 @@
 cat <<EOF > ~/hzn_custom_wl_demo.env
 
 export WIOTP_DOMAIN=internetofthings.ibmcloud.com
+export WIOTP_CLASS_ID="g"          # g (gateway) or d (device)
 
 # These values contain the credentials you created earlier in the Watson IoT Platform web GUI
 # Replace the <placeHolders> with the approriate values
