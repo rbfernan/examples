@@ -9,8 +9,8 @@ cp /etc/wiotp-edge/hznEdgeCoreIoTInput.json.template /etc/wiotp-edge/hznEdgeCore
 envsubst <~/examples/edge/wiotp/cpu2wiotp/horizon/pattern/device/hznEdgeCoreIoTInput.json.template> /etc/wiotp-edge/hznEdgeCoreIoTInput.json.template
 
 
-echo "Configuring WIoTP Edge Node for $HZN_ORG_ID $WIOTP_GW_TYPE $WIOTP_GW_ID..." 
-wiotp_agent_setup --org $HZN_ORG_ID --deviceType $WIOTP_GW_TYPE --deviceId $WIOTP_GW_ID --deviceToken "$WIOTP_GW_TOKEN" -cn 'edge-connector'
+echo "Configuring WIoTP Edge Node for $WIOTP_ORG_ID $WIOTP_GW_TYPE $WIOTP_GW_ID..." 
+wiotp_agent_setup --org $WIOTP_ORG_ID --deviceType $WIOTP_GW_TYPE --deviceId $WIOTP_GW_ID --deviceToken "$WIOTP_GW_TOKEN" -cn 'edge-connector'
 if [ $? -eq 0 ]; then
     echo "Agent setup ran successfuly"
 else

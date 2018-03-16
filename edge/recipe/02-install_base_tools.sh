@@ -36,21 +36,21 @@ apt update && apt install -y horizon-wiotp mosquitto-clients curl wget gettext m
 
 # Loand env vars
 . ~/hzn_custom_wl_demo.env
-export HZN_EXCHANGE_URL="https://$HZN_ORG_ID.$WIOTP_DOMAIN/api/v0002/edgenode/"
+export HZN_EXCHANGE_URL="https://$WIOTP_ORG_ID.$WIOTP_DOMAIN/api/v0002/edgenode/"
 
 echo "Running on a production environment"
 
 echo "Checking existing device types for this org..."
-hzn wiotp -o $HZN_ORG_ID -A "$WIOTP_API_KEY:$WIOTP_API_TOKEN" type list | jq .
+hzn wiotp -o $WIOTP_ORG_ID -A "$WIOTP_API_KEY:$WIOTP_API_TOKEN" type list | jq .
 
 echo "$WIOTP_GW_TYPE device type..."
-hzn wiotp -o $HZN_ORG_ID -A "$WIOTP_API_KEY:$WIOTP_API_TOKEN" type list $WIOTP_GW_TYPE | jq .
+hzn wiotp -o $WIOTP_ORG_ID -A "$WIOTP_API_KEY:$WIOTP_API_TOKEN" type list $WIOTP_GW_TYPE | jq .
 
 echo "All devices of $WIOTP_GW_TYPE device type..."
-hzn wiotp -o $HZN_ORG_ID -A "$WIOTP_API_KEY:$WIOTP_API_TOKEN" device list $WIOTP_GW_TYPE | jq .
+hzn wiotp -o $WIOTP_ORG_ID -A "$WIOTP_API_KEY:$WIOTP_API_TOKEN" device list $WIOTP_GW_TYPE | jq .
 
 echo "$WIOTP_GW_TYPE $WIOTP_GW_ID device..."
-hzn wiotp -o $HZN_ORG_ID -A "$WIOTP_API_KEY:$WIOTP_API_TOKEN" device list $WIOTP_GW_TYPE $WIOTP_GW_ID | jq .
+hzn wiotp -o $WIOTP_ORG_ID -A "$WIOTP_API_KEY:$WIOTP_API_TOKEN" device list $WIOTP_GW_TYPE $WIOTP_GW_ID | jq .
 
 echo "Cleanning up environment from previous executions... " 
 echo ""

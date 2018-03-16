@@ -2,7 +2,7 @@
 
 # Load env vars
 . ~/hzn_custom_wl_demo.env
-export HZN_EXCHANGE_URL="https://$HZN_ORG_ID.$WIOTP_DOMAIN/api/v0002/edgenode/"
+export HZN_EXCHANGE_URL="https://$WIOTP_ORG_ID.$WIOTP_DOMAIN/api/v0002/edgenode/"
 
 # based on the  https://github.com/open-horizon/examples/wiki/Edge-Quick-Start-Developer-Guide
 # Note: requires some of the steps require root access
@@ -65,29 +65,29 @@ echo ""
 echo "Publishing microservice definition..." 
 echo ""
 envsubst < ~/examples/edge/services/cpu_percent/horizon/cpu-template.json > ~/ms_def.json
-hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" microservice publish -o $HZN_ORG_ID -k $PRIVATE_KEY_FILE -f ~/ms_def.json
+hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" microservice publish -o $WIOTP_ORG_ID -k $PRIVATE_KEY_FILE -f ~/ms_def.json
 
 echo ""
 echo "Checking the pubished ms definition..." 
-hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" microservice list -o $HZN_ORG_ID | jq .
+hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" microservice list -o $WIOTP_ORG_ID | jq .
 
 echo ""
 echo "Verifying ms definition..."
-hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" microservice verify -o $HZN_ORG_ID -k $PUBLIC_KEY_FILE internetofthings.ibmcloud.com-microservices-cpu_${CPU_VERSION}_${ARCH2}
+hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" microservice verify -o $WIOTP_ORG_ID -k $PUBLIC_KEY_FILE internetofthings.ibmcloud.com-microservices-cpu_${CPU_VERSION}_${ARCH2}
 
 echo ""
 echo "Publishing workload definition..." 
 echo ""
 envsubst < ~/examples/edge/wiotp/cpu2wiotp/horizon/cpu2wiotp-template.json > ~/wl_def.json
-hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" workload publish -o $HZN_ORG_ID -k $PRIVATE_KEY_FILE -f ~/wl_def.json
+hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" workload publish -o $WIOTP_ORG_ID -k $PRIVATE_KEY_FILE -f ~/wl_def.json
 
 echo ""
 echo "Checking the pubished wl definition..." 
-hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" workload list -o $HZN_ORG_ID | jq .
+hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" workload list -o $WIOTP_ORG_ID | jq .
 
 echo ""
 echo "Verifying wl definition..."
-hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" workload verify -o $HZN_ORG_ID -k $PUBLIC_KEY_FILE internetofthings.ibmcloud.com-workloads-cpu2wiotp_${CPU2WIOTP_VERSION}_${ARCH2}
+hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" workload verify -o $WIOTP_ORG_ID -k $PUBLIC_KEY_FILE internetofthings.ibmcloud.com-workloads-cpu2wiotp_${CPU2WIOTP_VERSION}_${ARCH2}
 
 echo "" 
 echo "Publishing Complete."

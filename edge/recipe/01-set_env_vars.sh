@@ -9,7 +9,7 @@ export WIOTP_DOMAIN=internetofthings.ibmcloud.com
 
 # These values contain the credentials you created earlier in the Watson IoT Platform web GUI
 # Replace the <placeHolders> with the approriate values
-export HZN_ORG_ID=<orgId>
+export WIOTP_ORG_ID=<orgId>
 export WIOTP_GW_TYPE=<gatewayType>
 export WIOTP_GW_ID=<deviceId>
 export WIOTP_GW_TOKEN=<password>
