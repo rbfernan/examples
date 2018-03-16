@@ -52,10 +52,13 @@ hzn wiotp -o $HZN_ORG_ID -A "$WIOTP_API_KEY:$WIOTP_API_TOKEN" device list $WIOTP
 echo "$WIOTP_GW_TYPE $WIOTP_GW_ID device..."
 hzn wiotp -o $HZN_ORG_ID -A "$WIOTP_API_KEY:$WIOTP_API_TOKEN" device list $WIOTP_GW_TYPE $WIOTP_GW_ID | jq .
 
-echo "Cleanning up environment from previous executions... please ignore if error messages arise in this step" 
-hzn unregister -f
-echo "Cleanning up environment finished" 
+echo "Cleanning up environment from previous executions... " 
 echo ""
-
+hzn unregister -f >/dev/null
+if [ $? -eq 0 ]; then
+    echo "Cleanning up environment finished" 
+else
+    echo "No previous executions. Please ignore the error message above"     
+fi
 echo ""
 echo "Environment configuration complete."

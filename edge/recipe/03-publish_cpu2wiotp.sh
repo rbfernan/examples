@@ -65,39 +65,39 @@ echo ""
 echo "Publishing microservice definition..." 
 echo ""
 envsubst < ~/examples/edge/services/cpu_percent/horizon/cpu-template.json > ~/ms_def.json
-hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" microservice publish -o $WIOTP_ORG_ID -k $PRIVATE_KEY_FILE -f ~/ms_def.json
+hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" microservice publish -o $HZN_ORG_ID -k $PRIVATE_KEY_FILE -f ~/ms_def.json
 
 echo ""
 echo "Checking the pubished ms definition..." 
-hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" microservice list -o $WIOTP_ORG_ID | jq .
+hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" microservice list -o $HZN_ORG_ID | jq .
 
 echo ""
 echo "Verifying ms definition..."
-hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" microservice verify -o $WIOTP_ORG_ID -k $PUBLIC_KEY_FILE internetofthings.ibmcloud.com-microservices-cpu_${CPU_VERSION}_${ARCH2}
+hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" microservice verify -o $HZN_ORG_ID -k $PUBLIC_KEY_FILE internetofthings.ibmcloud.com-microservices-cpu_${CPU_VERSION}_${ARCH2}
 
 echo ""
 echo "Publishing workload definition..." 
 echo ""
 envsubst < ~/examples/edge/wiotp/cpu2wiotp/horizon/cpu2wiotp-template.json > ~/wl_def.json
-hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" workload publish -o $WIOTP_ORG_ID -k $PRIVATE_KEY_FILE -f ~/wl_def.json
+hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" workload publish -o $HZN_ORG_ID -k $PRIVATE_KEY_FILE -f ~/wl_def.json
 
 echo ""
 echo "Checking the pubished wl definition..." 
-hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" workload list -o $WIOTP_ORG_ID | jq .
+hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" workload list -o $HZN_ORG_ID | jq .
 
 echo ""
 echo "Verifying wl definition..."
-hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" workload verify -o $WIOTP_ORG_ID -k $PUBLIC_KEY_FILE internetofthings.ibmcloud.com-workloads-cpu2wiotp_${CPU2WIOTP_VERSION}_${ARCH2}
+hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" workload verify -o $HZN_ORG_ID -k $PUBLIC_KEY_FILE internetofthings.ibmcloud.com-workloads-cpu2wiotp_${CPU2WIOTP_VERSION}_${ARCH2}
 
 echo ""
 echo "Updating Pattern definition..." 
 echo ""
 envsubst < ~/examples/edge/wiotp/cpu2wiotp/horizon/pattern/insert-cpu2wiotp-template.json > ~/pi_def.json
-hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" pattern insertworkload -o $WIOTP_ORG_ID -k $PRIVATE_KEY_FILE -f ~/pi_def.json $WIOTP_GW_TYPE
+hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" pattern insertworkload -o $HZN_ORG_ID -k $PRIVATE_KEY_FILE -f ~/pi_def.json $WIOTP_GW_TYPE
 
 echo ""
 echo "Verifying Pattern definition..."
-hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" pattern list -o $WIOTP_ORG_ID $WIOTP_GW_TYPE | jq .
+hzn exchange -u "$WIOTP_API_KEY:$WIOTP_API_TOKEN" pattern list -o $HZN_ORG_ID $WIOTP_GW_TYPE | jq .
 
 echo "" 
 echo "Publishing Complete."
