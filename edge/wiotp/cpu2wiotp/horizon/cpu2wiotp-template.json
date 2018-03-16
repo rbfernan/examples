@@ -47,7 +47,7 @@
   ],
   "workloads": [
     {
-      "deployment": "{\"services\":{\"cpu2wiotp\":{\"image\":\"$DOCKER_HUB_ID/example_wl_${ARCH2}_cpu2wiotp:$CPU2WIOTP_VERSION\",\"binds\":[\"/var/wiotp-edge:/var/wiotp-edge\"],\"environment\":[\"WIOTP_DOMAIN=internetofthings.ibmcloud.com\",\"WIOTP_EDGE_MQTT_IP=localhost\",\"WIOTP_PEM_FILE=/var/wiotp-edge/persist/dc/ca/ca.pem\"]}}}",
+      "deployment": "{\"services\":{\"cpu2wiotp\":{\"image\":\"$DOCKER_HUB_ID/example_wl_${ARCH2}_cpu2wiotp:$CPU2WIOTP_VERSION\",\"binds\":[\"/var/wiotp-edge:/var/wiotp-edge\"],\"environment\":[\"WIOTP_DOMAIN=internetofthings.ibmcloud.com\",\"WIOTP_EDGE_MQTT_IP=edge-connector\",\"WIOTP_PEM_FILE=/var/wiotp-edge/persist/dc/ca/ca.pem\"]}}}",
       "deployment_signature": "",
       "torrent": "{\"url\":\"\",\"signature\":\"\"}"
     }
